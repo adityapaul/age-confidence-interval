@@ -79,16 +79,19 @@ for i in range(0, len(filenames)):
     if i % 5000 == 0:
         print(str(i) + " of " + str(len(filenames)) + " ages loaded")
 
-img_train_list, img_test_list, age_train_list, age_test_list = train_test_split(img_list, age_list, test_size=0.3)
+img_train, img_test, age_train, age_test = train_test_split(img_list, age_list, test_size=0.3)
+del img_list
+del age_list
+
 
 print("starting")
-img_train = np.asarray(img_train_list)
+img_train = np.asarray(img_train)
 print("img_train done")
-img_test = np.asarray(img_test_list)
+img_test = np.asarray(img_test)
 print("img_test done")
-age_train = keras.utils.to_categorical(np.asarray(age_train_list))
+age_train = keras.utils.to_categorical(np.asarray(age_train))
 print("age_train done")
-age_test = keras.utils.to_categorical(np.asarray(age_test_list))
+age_test = keras.utils.to_categorical(np.asarray(age_test))
 print("age_test done")
 
 model.compile(optimizer='adam', loss='categorical_crossentropy')
